@@ -53,7 +53,7 @@ def bot_init():
             )
             embed.add_field(
                 name="What's new?",
-                value=f"You can read the Changelog for Suraya [here](TODO - Insert Changelog Link here).",
+                value=f"You can read the Changelog for Suraya [here](https://github.com/mlfrazer/Suraya/blob/main/CHANGELOG.md).",
                 inline=False,
             )
             embed.add_field(
@@ -177,6 +177,14 @@ def bot_init():
             view=view,
         )
 
+        message = await interaction.original_response()
+
+        thread = await message.create_thread(
+            name="Raid LFG Group Thread",
+            auto_archive_duration=1440
+        )
+        await thread.add_user(interaction.user)
+
     """Create a listing for a Dungeon activity
     """
 
@@ -249,5 +257,13 @@ def bot_init():
             embed=embed,
             view=view,
         )
+
+        message = await interaction.original_response()
+
+        thread = await message.create_thread(
+            name="Dungeon LFG Group Thread",
+            auto_archive_duration=1440
+        )
+        await thread.add_user(interaction.user)
 
     bot.run(TOKEN)

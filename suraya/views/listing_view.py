@@ -61,6 +61,24 @@ class RSVPButton(Button):
 
         await interaction.response.edit_message(embed=embed, view=self.view)
 
+        thread = interaction.message.thread
+
+        if thread is None:
+            await interaction.response.send_message(
+                "No thread was found for this LFG post.",
+                ephemeral=True
+            )
+            return
+        # Add the user to the thread
+        try:
+            await thread.add_user(interaction.user)
+
+        except discord.Forbidden:
+            await interaction.response.send_message(
+                "I don't have permission to add you to the thread.",
+                ephemeral=True
+            )
+
 
 class BackupButton(Button):
     def __init__(self, listing_mongo_id: str, creator: int):
