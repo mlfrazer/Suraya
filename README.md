@@ -24,7 +24,7 @@ following variables:
 - `TOKEN`: A private token for a Discord Application
 - `OWNER_ID`: Your Discord User ID. Needed so you can use `!sync` to sync the
   slash commands. _Note that this is not your username, but rather, your unique
-  Discord interger ID._
+  Discord interger ID.
 
 ## Using Suraya
 
